@@ -1,15 +1,25 @@
 module.exports = {
+  env: {
+    browser: true,
+    es2021: true,
+  },
+  extends: [
+    'eslint:recommended',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:@builder.io/mitosis/recommended',
+  ],
+  parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
     },
+    ecmaVersion: 'latest',
+    sourceType: 'module',
   },
-  plugins: ['@builder.io/mitosis'],
-  extends: [
-    'plugin:@builder.io/mitosis/recommended',
-  ],
+  plugins: ['@typescript-eslint', '@builder.io/mitosis'],
   rules: {
-    // Use this to configure rules individually
+    // It is recommended to use all properties from mitosis, because they will point out some of mitosis' limitations and avoid confusion.
+	  // https://github.com/BuilderIO/mitosis/tree/main/packages/eslint-plugin
     '@builder.io/mitosis/css-no-vars': 'error',
     '@builder.io/mitosis/jsx-callback-arg-name': 'error',
     '@builder.io/mitosis/jsx-callback-arrow-function': 'error',
