@@ -1,4 +1,4 @@
-const config = require('../../rollup.config.js.old');
+const config = require('../../rollup.config.js');
 
 module.exports = config({
   dir: __dirname,
