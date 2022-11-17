@@ -1,0 +1,17 @@
+{
+  "name": "dsf-vue",
+  "version": "0.0.1",
+  "license": "MIT",
+  "author": "Manu Ustenko",
+  "main": "./dist/dsf-vue.umd.js",
+  "module": "./dist/dsf-vue.es.js",
+  "peerDependencies": {
+    "vue": "2.6.14"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "rollup -c"
+  }
+}

@@ -1,8 +1,8 @@
 <template>
-  <init-component message="Hello from Vue" />
+    <app-button name="Click me" />
+  <div class="text-color-primary-400">Hello World</div>
 </template>
 
 <script setup>
-// import InitComponent from 'coral/vue/vue3/src/components/InitComponent.vue'
-import InitComponent from '../../design-system-foundation/output/vue/vue3/src/components/InitComponent.vue'
+import { Button as AppButton } from 'coral'
 </script>

@@ -1,10 +1,11 @@
 import './App.css';
-import InitComponent from 'coral/react/src/components/InitComponent'
+import { Input, Button } from './components/dist/dsf-react.es'
 
 function App() {
   return (
     <div className="App">
-	    <InitComponent message={'Hello from react'} />
+	    Hello
+	    <Button name="hello orld" />
     </div>
   );
 }
