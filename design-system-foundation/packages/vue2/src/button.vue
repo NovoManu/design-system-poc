@@ -10,12 +10,12 @@
 
 <script>
 import "./button.css";
-import { colors, spacing } from "../../../foundations";
+import { colors, darkColors, xmasColors, spacing } from "../../../foundations";
 
 export default {
   name: "button",
 
-  props: ["size", "type", "text"],
+  props: ["theme", "size", "type", "text"],
 
   data: () => ({ loading: true }),
 
@@ -28,9 +28,15 @@ export default {
       return `dsf-button flex flex-row justify-center items-center px-4 py-2 w-6 h-4 rounded`;
     },
     componentStyles() {
+      const themeColors = {
+        default: colors,
+        dark: darkColors,
+        xmas: xmasColors,
+      };
+      const themeColor = themeColors[this.theme] || themeColors.default;
       const types = {
-        Primary: colors["color-primary"]["200"],
-        Secondary: colors["color-secondary"]["200"],
+        Primary: themeColor["color-primary"]["200"],
+        Secondary: themeColor["color-secondary"]["200"],
       };
       const defaultType = types["Primary"];
       const sizes = {

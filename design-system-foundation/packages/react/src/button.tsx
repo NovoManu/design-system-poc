@@ -5,9 +5,10 @@ type ButtonProps = {
   text: string;
   type: "Primary" | "Secondary";
   size: "Small" | "Medium" | "Large";
+  theme: "dark" | "xmas";
 };
 import "./button.css";
-import { colors, spacing } from "../../../foundations";
+import { colors, darkColors, xmasColors, spacing } from "../../../foundations";
 
 export default function Button(props: ButtonProps) {
   const state = useLocalObservable(() => ({
@@ -16,9 +17,15 @@ export default function Button(props: ButtonProps) {
       return `dsf-button flex flex-row justify-center items-center px-4 py-2 w-6 h-4 rounded`;
     },
     get componentStyles() {
+      const themeColors = {
+        default: colors,
+        dark: darkColors,
+        xmas: xmasColors,
+      };
+      const themeColor = themeColors[props.theme] || themeColors.default;
       const types = {
-        Primary: colors["color-primary"]["200"],
-        Secondary: colors["color-secondary"]["200"],
+        Primary: themeColor["color-primary"]["200"],
+        Secondary: themeColor["color-secondary"]["200"],
       };
       const defaultType = types["Primary"];
       const sizes = {

@@ -25,6 +25,48 @@ var colors = {
   }
 };
 
+var darkColors = {
+  'color-primary': {
+    50: '#FFFFFF',
+    100: '#F7FBFF',
+    200: '#D0D8DF',
+    300: '#ACB6BF',
+    400: '#8C969F',
+    500: '#6E7780',
+    600: '#525960'
+  },
+  'color-secondary': {
+    50: '#F7FFF8',
+    100: '#CCF0CE',
+    200: '#84D288',
+    300: '#3EA644',
+    400: '#26882B',
+    500: '#186A1C',
+    600: '#0F4D12'
+  }
+};
+
+var xmasColors = {
+  'color-primary': {
+    50: '#FFF8F7',
+    100: '#FBC9C5',
+    200: '#F23568',
+    300: '#DB1C0A',
+    400: '#AC180A',
+    500: '#7C180E',
+    600: '#4D140F'
+  },
+  'color-secondary': {
+    50: '#FFFFFF',
+    100: '#F7FBFF',
+    200: '#D0D8DF',
+    300: '#ACB6BF',
+    400: '#8C969F',
+    500: '#6E7780',
+    600: '#525960'
+  }
+};
+
 var spacing = {
   '0': '0px',
   'px': '1px',
@@ -71,22 +113,6 @@ var screens = {
   '2xl': '1536px'
 };
 
-var script$1 = {
-  name: "input",
-};
-
-const _hoisted_1 = {
-  type: "text",
-  class: "dsf-input"
-};
-
-function render$1(_ctx, _cache, $props, $setup, $data, $options) {
-  return (vue.openBlock(), vue.createElementBlock("input", _hoisted_1))
-}
-
-script$1.render = render$1;
-script$1.__file = "src/input.vue";
-
 function styleInject(css, ref) {
   if ( ref === void 0 ) ref = {};
   var insertAt = ref.insertAt;
@@ -117,10 +143,10 @@ function styleInject(css, ref) {
 var css_248z = ".dsf-button{\n    cursor:pointer;\n}\n.dsf-button--primary{\n    background-color:#FFAF69;\n}\n.dsf-button--secondary{\n    background-color:#78C2FF;\n}\n.dsf-button--small{\n    width:68px;\n    height:32px;\n}\n.dsf-button--medium{\n    width:76px;\n    height:40px;\n}\n";
 styleInject(css_248z);
 
-var script = {
+var script$1 = {
   name: "button",
 
-  props: ["size", "type", "text"],
+  props: ["theme", "size", "type", "text"],
 
   data: () => ({ loading: true }),
 
@@ -133,9 +159,15 @@ var script = {
       return `dsf-button flex flex-row justify-center items-center px-4 py-2 w-6 h-4 rounded`;
     },
     componentStyles() {
+      const themeColors = {
+        default: colors,
+        dark: darkColors,
+        xmas: xmasColors,
+      };
+      const themeColor = themeColors[this.theme] || themeColors.default;
       const types = {
-        Primary: colors["color-primary"]["200"],
-        Secondary: colors["color-secondary"]["200"],
+        Primary: themeColor["color-primary"]["200"],
+        Secondary: themeColor["color-secondary"]["200"],
       };
       const defaultType = types["Primary"];
       const sizes = {
@@ -178,7 +210,7 @@ var script = {
   },
 };
 
-function render(_ctx, _cache, $props, $setup, $data, $options) {
+function render$1(_ctx, _cache, $props, $setup, $data, $options) {
   return (!_ctx.loading)
     ? (vue.openBlock(), vue.createElementBlock("button", {
         key: 0,
@@ -188,12 +220,30 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     : vue.createCommentVNode("v-if", true)
 }
 
-script.render = render;
-script.__file = "src/button.vue";
+script$1.render = render$1;
+script$1.__file = "src/button.vue";
 
-exports.Button = script;
-exports.Input = script$1;
+var script = {
+  name: "input",
+};
+
+const _hoisted_1 = {
+  type: "text",
+  class: "dsf-input"
+};
+
+function render(_ctx, _cache, $props, $setup, $data, $options) {
+  return (vue.openBlock(), vue.createElementBlock("input", _hoisted_1))
+}
+
+script.render = render;
+script.__file = "src/input.vue";
+
+exports.Button = script$1;
+exports.Input = script;
 exports.colors = colors;
+exports.darkColors = darkColors;
 exports.screens = screens;
 exports.spacing = spacing;
+exports.xmasColors = xmasColors;
 //# sourceMappingURL=dsf-vue.umd.js.map

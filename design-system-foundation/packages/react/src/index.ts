@@ -1,3 +1,3 @@
-export { default as Button } from './button';
 export { default as Input } from './input';
-export { colors, screens, spacing } from '../../../foundations'
+export { colors, darkColors, screens, spacing, xmasColors } from '../../../foundations'
+export { default as Button } from './button';
