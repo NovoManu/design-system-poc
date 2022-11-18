@@ -1,0 +1,17 @@
+.dsf-button {
+    cursor: pointer;
+}
+.dsf-button--primary {
+    background-color: #FFAF69;
+}
+.dsf-button--secondary {
+    background-color: #78C2FF;
+}
+.dsf-button--small {
+    width: 68px;
+    height: 32px;
+}
+.dsf-button--medium {
+    width: 76px;
+    height: 40px;
+}
