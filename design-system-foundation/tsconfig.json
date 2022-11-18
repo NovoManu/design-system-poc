@@ -1,14 +1,14 @@
 {
   "compilerOptions": {
+    "strict": false,
+    "target": "es5",
+    "jsx": "preserve",
     "esModuleInterop": true,
-    "resolveJsonModule": true,
-    "paths": {
-      "~/*": [
-        "./*"
-      ]
-    }
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "jsxImportSource": "@builder.io/mitosis"
   },
   "include": [
-    "src/**/*"
+    "src"
   ]
 }

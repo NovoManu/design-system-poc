@@ -1,5 +1,0 @@
-@import '../../build.css';
-
-.pa-row {
-  @mixin shared-styles;
-}

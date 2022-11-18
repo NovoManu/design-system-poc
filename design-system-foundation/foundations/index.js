@@ -1,5 +1,3 @@
-const colors = require('./colors')
-const spacing = require('./spacing')
-const screens = require('./screens')
-
-module.exports = { colors, spacing, screens }
+export { colors } from './colors'
+export { spacing } from './spacing'
+export { screens } from './screens'

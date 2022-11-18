@@ -1,5 +1,5 @@
 /** @type {import('tailwindcss').Config} */
-const { colors, spacing } = require('./node_modules/coral')
+const { colors, spacing, screens } = require('./node_modules/coral')
 
 module.exports = {
   content: [
@@ -7,9 +7,7 @@ module.exports = {
     "./src/**/*.{vue,js,ts,jsx,tsx}",
   ],
   theme: {
-		screens: {
-			sm: '480px'
-		},
+		screens,
 	  colors,
 	  spacing,
     extend: {},

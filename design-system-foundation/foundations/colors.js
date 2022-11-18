@@ -1,4 +1,4 @@
-module.exports = {
+export const colors = {
 	'color-primary': {
 		50: '#FFF8F2',
 		100: '#FFF04C',
@@ -7,5 +7,14 @@ module.exports = {
 		400: '#C45B00',
 		500: '#883F00',
 		600: '#4D2400',
+	},
+	'color-secondary': {
+		50: '#F2F9FF',
+		100: '#C9E6FF',
+		200: '#78C2FF',
+		300: '#1890FF',
+		400: '#0366C4',
+		500: '#004588',
+		600: '#00264D',
 	},
 }
