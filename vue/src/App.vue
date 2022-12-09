@@ -5,29 +5,40 @@
       <div class="text-3xl font-bold text-color-secondary-400">Hello World (Secondary)</div>
       <div class="flex items-center my-6">
         <app-button class="mr-3" text="Button" type="Primary" size="Large" :theme="theme"/>
-        <app-button class="mr-3" text="Button" type="Secondary" size="Large"  :theme="theme"/>
-        <app-button class="mr-3" text="Button" type="Primary" size="Medium"  :theme="theme"/>
-        <app-button class="mr-3" text="Button" type="Secondary" size="Medium"  :theme="theme"/>
-        <app-button class="mr-3" text="Button" type="Primary" size="Small"  :theme="theme"/>
-        <app-button text="Button" type="Secondary" size="Small"  :theme="theme"/>
+        <app-button class="mr-3" text="Button" type="Secondary" size="Large" :theme="theme"/>
+        <app-button class="mr-3" text="Button" type="Primary" size="Medium" :theme="theme"/>
+        <app-button class="mr-3" text="Button" type="Secondary" size="Medium" :theme="theme"/>
+        <app-button class="mr-3" text="Button" type="Primary" size="Small" :theme="theme"/>
+        <app-button text="Button" type="Secondary" size="Small" :theme="theme"/>
+      </div>
+      <div class="mb-3">
+        <div class="opacity-50">Selected item is: <span class="font-bold">{{ selectedItem }}</span></div>
+        <app-dropdown :items="['option1', 'option2']" :onSelect="onSelect"/>
       </div>
       <a href="#" class="p-4 text-color-primary-200" @click="setTheme('default')">Default theme</a>
       <a href="#" class="p-4 text-color-secondary-300" @click="setTheme('dark')">Dark theme</a>
       <a href="#" class="p-4 text-color-primary-500" @click="setTheme('xmas')">Xmas theme</a>
-      <app-dropdown />
     </div>
   </div>
 </template>
 
 <script setup>
-import { Button as AppButton, Dropdown as AppDropdown } from 'coral'
+// import { Button as AppButton, Dropdown as AppDropdown } from 'coral'
+import { Button as AppButton } from 'coral'
+import AppDropdown from './dropdown.vue'
 import { ref } from 'vue'
 
 const theme = ref('')
+const items = ref(['option1', 'option2'])
+const selectedItem = ref(items[0])
 
-function setTheme(t) {
+function setTheme (t) {
   document.body.className = document.body.className = ''
   document.body.classList.add(t)
   theme.value = t
+}
+
+function onSelect (item) {
+  selectedItem.value = item
 }
 </script>

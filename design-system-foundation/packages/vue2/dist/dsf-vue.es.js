@@ -1,4 +1,4 @@
-import { openBlock, createElementBlock, normalizeStyle, normalizeClass, toDisplayString, createCommentVNode, createElementVNode } from 'vue';
+import { openBlock, createElementBlock, normalizeStyle, normalizeClass, toDisplayString, createCommentVNode, createElementVNode, Fragment, renderList } from 'vue';
 
 var colors = {
   'color-primary': {
@@ -220,45 +220,65 @@ script$2.render = render$2;
 script$2.__file = "src/button.vue";
 
 var script$1 = {
-  name: "input",
+  name: "dropdown",
+
+  props: ["onSelect", "items"],
+
+  data: () => ({ isOpen: false }),
+
+  methods: {
+    handleSelect(item) {
+      this.onSelect(item);
+      this.isOpen = false;
+    },
+  },
 };
 
 const _hoisted_1$1 = {
+  key: 0,
+  tabIndex: 0
+};
+const _hoisted_2 = ["onClick"];
+
+function render$1(_ctx, _cache, $props, $setup, $data, $options) {
+  return (openBlock(), createElementBlock("div", null, [
+    createElementVNode("label", {
+      tabIndex: 0,
+      onClick: _cache[0] || (_cache[0] = $event => (_ctx.isOpen = !_ctx.isOpen))
+    }, "Click"),
+    (_ctx.isOpen)
+      ? (openBlock(), createElementBlock("ul", _hoisted_1$1, [
+          (openBlock(true), createElementBlock(Fragment, null, renderList($props.items, (item, index) => {
+            return (openBlock(), createElementBlock("li", {
+              onClick: $event => ($options.handleSelect(item)),
+              key: index
+            }, [
+              createElementVNode("a", null, toDisplayString(item), 1 /* TEXT */)
+            ], 8 /* PROPS */, _hoisted_2))
+          }), 128 /* KEYED_FRAGMENT */))
+        ]))
+      : createCommentVNode("v-if", true)
+  ]))
+}
+
+script$1.render = render$1;
+script$1.__file = "src/dropdown.vue";
+
+var script = {
+  name: "input",
+};
+
+const _hoisted_1 = {
   type: "text",
   class: "dsf-input"
 };
 
-function render$1(_ctx, _cache, $props, $setup, $data, $options) {
-  return (openBlock(), createElementBlock("input", _hoisted_1$1))
-}
-
-script$1.render = render$1;
-script$1.__file = "src/input.vue";
-
-var script = {
-  name: "dropdown",
-};
-
-const _hoisted_1 = /*#__PURE__*/createElementVNode("label", { tabIndex: 0 }, "Click", -1 /* HOISTED */);
-const _hoisted_2 = /*#__PURE__*/createElementVNode("ul", { tabIndex: 0 }, [
-  /*#__PURE__*/createElementVNode("li", null, [
-    /*#__PURE__*/createElementVNode("a", null, "Item 1")
-  ]),
-  /*#__PURE__*/createElementVNode("li", null, [
-    /*#__PURE__*/createElementVNode("a", null, "Item 2")
-  ])
-], -1 /* HOISTED */);
-const _hoisted_3 = [
-  _hoisted_1,
-  _hoisted_2
-];
-
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (openBlock(), createElementBlock("div", null, _hoisted_3))
+  return (openBlock(), createElementBlock("input", _hoisted_1))
 }
 
 script.render = render;
-script.__file = "src/dropdown.vue";
+script.__file = "src/input.vue";
 
-export { script$2 as Button, script as Dropdown, script$1 as Input, colors, darkColors, screens, spacing, xmasColors };
+export { script$2 as Button, script$1 as Dropdown, script as Input, colors, darkColors, screens, spacing, xmasColors };
 //# sourceMappingURL=dsf-vue.es.js.map
