@@ -1,10 +1,10 @@
-import { useStore, For, Show } from '@builder.io/mitosis'
+import { useStore, For, Show, Slot } from '@builder.io/mitosis'
 
-type DropdownProps = {
-  items: string[],
-  onSelect(event: any): string
+type DropdownProps<T> = {
+  items: T[],
+  onSelect(item: string): void
 }
-export default function Dropdown(props: DropdownProps) {
+export default function Dropdown(props: any) {
   const state = useStore({
     isOpen: false,
     handleSelect(item) {
@@ -13,16 +13,22 @@ export default function Dropdown(props: DropdownProps) {
     }
   })
   return (
-    <div>
-      <label tabIndex={0} onClick={() => state.isOpen = !state.isOpen}>Click</label>
+    <div class={'dropdown relative border w-1/5 rounded p-0.5'}>
+      <label class={'block w-full cursor-pointer'} tabIndex={0}
+             onClick={() => state.isOpen = !state.isOpen}>Click</label>
       <Show when={state.isOpen}>
-        <ul tabIndex={0}>
+        <select tabIndex={0} class={'dropdown-menu absolute bg-white py-1.5 border w-full left-0 top-8'}>
           <For each={props.items}>
             {
-              item => <li onClick={() => state.handleSelect(item)}><a>{item}</a></li>
+              item => <option
+                class={'p-1 cursor-pointer hover:bg-color-secondary-100 transition'}
+                onClick={() => state.handleSelect(item)}
+              >
+               <Slot item={item} />
+              </option>
             }
           </For>
-        </ul>
+        </select>
       </Show>
     </div>
   )

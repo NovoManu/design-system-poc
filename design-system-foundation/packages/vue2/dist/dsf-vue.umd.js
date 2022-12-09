@@ -224,6 +224,22 @@ script$2.render = render$2;
 script$2.__file = "src/button.vue";
 
 var script$1 = {
+  name: "input",
+};
+
+const _hoisted_1$1 = {
+  type: "text",
+  class: "dsf-input"
+};
+
+function render$1(_ctx, _cache, $props, $setup, $data, $options) {
+  return (vue.openBlock(), vue.createElementBlock("input", _hoisted_1$1))
+}
+
+script$1.render = render$1;
+script$1.__file = "src/input.vue";
+
+var script = {
   name: "dropdown",
 
   props: ["onSelect", "items"],
@@ -238,55 +254,43 @@ var script$1 = {
   },
 };
 
-const _hoisted_1$1 = {
+const _hoisted_1 = { class: "dropdown relative border w-1/5 rounded p-0.5" };
+const _hoisted_2 = {
   key: 0,
+  class: "dropdown-menu absolute bg-white py-1.5 border w-full left-0 top-8",
   tabIndex: 0
 };
-const _hoisted_2 = ["onClick"];
+const _hoisted_3 = ["onClick"];
 
-function render$1(_ctx, _cache, $props, $setup, $data, $options) {
-  return (vue.openBlock(), vue.createElementBlock("div", null, [
+function render(_ctx, _cache, $props, $setup, $data, $options) {
+  return (vue.openBlock(), vue.createElementBlock("div", _hoisted_1, [
     vue.createElementVNode("label", {
+      class: "block w-full cursor-pointer",
       tabIndex: 0,
       onClick: _cache[0] || (_cache[0] = $event => (_ctx.isOpen = !_ctx.isOpen))
     }, "Click"),
     (_ctx.isOpen)
-      ? (vue.openBlock(), vue.createElementBlock("ul", _hoisted_1$1, [
+      ? (vue.openBlock(), vue.createElementBlock("select", _hoisted_2, [
           (vue.openBlock(true), vue.createElementBlock(vue.Fragment, null, vue.renderList($props.items, (item, index) => {
-            return (vue.openBlock(), vue.createElementBlock("li", {
+            return (vue.openBlock(), vue.createElementBlock("option", {
+              class: "p-1 cursor-pointer hover:bg-color-secondary-100 transition",
               onClick: $event => ($options.handleSelect(item)),
               key: index
             }, [
-              vue.createElementVNode("a", null, vue.toDisplayString(item), 1 /* TEXT */)
-            ], 8 /* PROPS */, _hoisted_2))
+              vue.renderSlot(_ctx.$slots, "default", { item: item })
+            ], 8 /* PROPS */, _hoisted_3))
           }), 128 /* KEYED_FRAGMENT */))
         ]))
       : vue.createCommentVNode("v-if", true)
   ]))
 }
 
-script$1.render = render$1;
-script$1.__file = "src/dropdown.vue";
-
-var script = {
-  name: "input",
-};
-
-const _hoisted_1 = {
-  type: "text",
-  class: "dsf-input"
-};
-
-function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (vue.openBlock(), vue.createElementBlock("input", _hoisted_1))
-}
-
 script.render = render;
-script.__file = "src/input.vue";
+script.__file = "src/dropdown.vue";
 
 exports.Button = script$2;
-exports.Dropdown = script$1;
-exports.Input = script;
+exports.Dropdown = script;
+exports.Input = script$1;
 exports.colors = colors;
 exports.darkColors = darkColors;
 exports.screens = screens;

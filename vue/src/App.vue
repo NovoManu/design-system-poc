@@ -13,7 +13,7 @@
       </div>
       <div class="mb-3">
         <div class="opacity-50">Selected item is: <span class="font-bold">{{ selectedItem }}</span></div>
-        <app-dropdown :items="['option1', 'option2']" :onSelect="onSelect"/>
+        <app-dropdown :items="items" v-slot="slotProps" :onSelect="onSelect"><test-comp :item="slotProps.item" /></app-dropdown>
       </div>
       <a href="#" class="p-4 text-color-primary-200" @click="setTheme('default')">Default theme</a>
       <a href="#" class="p-4 text-color-secondary-300" @click="setTheme('dark')">Dark theme</a>
@@ -23,13 +23,25 @@
 </template>
 
 <script setup>
-// import { Button as AppButton, Dropdown as AppDropdown } from 'coral'
-import { Button as AppButton } from 'coral'
-import AppDropdown from './dropdown.vue'
+import { Button as AppButton, Dropdown as AppDropdown } from 'coral'
+import TestComp from './TestComp.vue'
 import { ref } from 'vue'
 
 const theme = ref('')
-const items = ref(['option1', 'option2'])
+const items = ref([
+  {
+    first: 'Axel',
+    last: 'Nilsson'
+  },
+  {
+    first: 'Manu',
+    last: 'Ustenko'
+  },
+  {
+    first: 'Marta',
+    last: 'Joka'
+  }
+])
 const selectedItem = ref(items[0])
 
 function setTheme (t) {

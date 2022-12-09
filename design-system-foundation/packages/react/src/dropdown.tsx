@@ -1,11 +1,11 @@
 import * as React from "react";
 import { useLocalObservable } from "mobx-react-lite";
-type DropdownProps = {
-  items: string[];
-  onSelect(event: any): string;
+type DropdownProps<T> = {
+  items: T[];
+  onSelect(item: string): void;
 };
 
-export default function Dropdown(props: DropdownProps) {
+export default function Dropdown(props: any) {
   const state = useLocalObservable(() => ({
     isOpen: false,
     handleSelect(item) {
@@ -15,20 +15,29 @@ export default function Dropdown(props: DropdownProps) {
   }));
 
   return (
-    <div>
-      <label tabIndex={0} onClick={(event) => (state.isOpen = !state.isOpen)}>
+    <div className="dropdown relative border w-1/5 rounded p-0.5">
+      <label
+        className="block w-full cursor-pointer"
+        tabIndex={0}
+        onClick={(event) => (state.isOpen = !state.isOpen)}
+      >
         Click
       </label>
 
       {state.isOpen ? (
         <>
-          <ul tabIndex={0}>
+          <select
+            className="dropdown-menu absolute bg-white py-1.5 border w-full left-0 top-8"
+            tabIndex={0}
+          >
             {props.items?.map((item) => (
-              <li onClick={(event) => state.handleSelect(item)}>
-                <a>{item}</a>
-              </li>
+              <option
+                className="p-1 cursor-pointer hover:bg-color-secondary-100 transition"
+                onClick={(event) => state.handleSelect(item)}
+                slotItem={item}
+              ></option>
             ))}
-          </ul>
+          </select>
         </>
       ) : null}
     </div>
